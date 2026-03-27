@@ -12,6 +12,7 @@
         "fl_chart",
         "flutter",
         "flutter_riverpod",
+        "forge2d",
         "intl",
         "path",
         "path_provider",
@@ -140,6 +141,15 @@
         "stream_channel",
         "test_api",
         "vector_math"
+      ]
+    },
+    {
+      "name": "forge2d",
+      "version": "0.14.2+1",
+      "dependencies": [
+        "meta",
+        "vector_math",
+        "web"
       ]
     },
     {
