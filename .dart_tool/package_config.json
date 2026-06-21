@@ -368,6 +368,12 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "oimo_physics",
+      "rootUri": "file:///Users/jungmacbookair/.pub-cache/hosted/pub.dev/oimo_physics-0.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
       "name": "package_config",
       "rootUri": "file:///Users/jungmacbookair/.pub-cache/hosted/pub.dev/package_config-2.2.0",
       "packageUri": "lib/",

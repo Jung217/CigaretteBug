@@ -14,12 +14,14 @@
         "flutter_riverpod",
         "forge2d",
         "intl",
+        "oimo_physics",
         "path",
         "path_provider",
         "riverpod_annotation",
         "sensors_plus",
         "sqlite3_flutter_libs",
-        "uuid"
+        "uuid",
+        "vector_math"
       ],
       "devDependencies": [
         "build_runner",
@@ -140,6 +142,19 @@
         "stack_trace",
         "stream_channel",
         "test_api",
+        "vector_math"
+      ]
+    },
+    {
+      "name": "vector_math",
+      "version": "2.2.0",
+      "dependencies": []
+    },
+    {
+      "name": "oimo_physics",
+      "version": "0.0.5",
+      "dependencies": [
+        "flutter",
         "vector_math"
       ]
     },
@@ -719,11 +734,6 @@
         "matcher",
         "meta"
       ]
-    },
-    {
-      "name": "vector_math",
-      "version": "2.2.0",
-      "dependencies": []
     },
     {
       "name": "clock",

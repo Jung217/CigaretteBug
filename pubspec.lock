@@ -480,6 +480,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
+  oimo_physics:
+    dependency: "direct main"
+    description:
+      name: oimo_physics
+      sha256: "0b2094414a2048a8e7fd3a3262592e26a17d7cac4e1b3ab1fa492cfd6657efeb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.5"
   package_config:
     dependency: transitive
     description:
@@ -782,7 +790,7 @@ packages:
     source: hosted
     version: "4.5.3"
   vector_math:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: vector_math
       sha256: d530bd74fea330e6e364cda7a85019c434070188383e1cd8d9777ee586914c5b

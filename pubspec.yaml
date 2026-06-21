@@ -36,7 +36,13 @@ dependencies:
 
   # Intl (date formatting)
   intl: ^0.20.2
+
+  # 2D physics (legacy home scene)
   forge2d: ^0.14.2+1
+
+  # 3D rigid-body physics (real tumbling/rolling on the home scene)
+  oimo_physics: ^0.0.5
+  vector_math: ^2.1.4
 
 dev_dependencies:
   flutter_test:

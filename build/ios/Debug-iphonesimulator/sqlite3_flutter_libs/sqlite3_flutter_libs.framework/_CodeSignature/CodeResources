@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/sqlite3_flutter_libs-Swift.h</key>
 		<data>
-		L4AksMKN7pwDc8uY9cgjevDHvcc=
+		0zwI6BCFlPpyW5c/ct1sJkqfyYE=
 		</data>
 		<key>Headers/sqlite3_flutter_libs-umbrella.h</key>
 		<data>
@@ -14,19 +14,19 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		n7pbbVTn3zAFsvQzsMa3V/l5EJE=
+		Bfhw4NuwXtT2ylg9mJihc7GJBt4=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		N4gLBEm3zBxqnIcT8Y12FciAbc8=
+		UxDIKhlQdldG4srzKmoCUGSu7Us=
 		</data>
 		<key>Modules/sqlite3_flutter_libs.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		Bg+qU/rIaWrG1jwunsSFe0XXIwI=
+		gVIWr6WorsBuySr9H0tPUlkN0qI=
 		</data>
 		<key>Modules/sqlite3_flutter_libs.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		OXWFAFlkLCXDN2Q50GFlDdPz9Yw=
+		3sn4rRgx53nSeXtWFXTmkIM4U9I=
 		</data>
 		<key>Modules/sqlite3_flutter_libs.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -34,11 +34,11 @@
 		</data>
 		<key>Modules/sqlite3_flutter_libs.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		Wc0TQxpdK6JosGMCtetmCUa4Ks0=
+		ynvS+X0V/yUYu1NSOG+nSI1ST3A=
 		</data>
 		<key>Modules/sqlite3_flutter_libs.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		YIKhIhuNVxrAMZHUNQCOvk1iu68=
+		nDrUIuqATN4Y5pFf8oA+l9JrMR8=
 		</data>
 		<key>Modules/sqlite3_flutter_libs.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -46,11 +46,11 @@
 		</data>
 		<key>Modules/sqlite3_flutter_libs.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		s/2ZT/upcEMte+wGIz+15hwKBEY=
+		FJFI/4nYH8SV839/qdS4ngMxKeY=
 		</data>
 		<key>Modules/sqlite3_flutter_libs.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		kyHN4ySrmM4rtqPY/8BzwN+9jIk=
+		0AHmk0NkQsc8uAhpL6Pl7PSQfoU=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -59,7 +59,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			2l8UmvNkT1GC3CZZC2loK0VN1IZhdjeT2/Qpm4LLDfQ=
+			nY+Pq49zXfcnFdz9gaX8M2gNA6DY4RM7akBucGUJLrc=
 			</data>
 		</dict>
 		<key>Headers/sqlite3_flutter_libs-umbrella.h</key>
@@ -73,21 +73,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ZteG1ua8AAQ8iutEUV06dtG7DTv7cQ0MWYNGsIZHzrU=
+			tcH6amGPHGWHXoQG+AUhweJlV3XB2McpC3Fr8MVeoyg=
 			</data>
 		</dict>
 		<key>Modules/sqlite3_flutter_libs.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			SV/NlqorYITtcvk5yo8ZrQQUtINg3ODG7qrojPsVk9w=
+			SS9n+2E/fmluYKlvKJksdaFQYO91kXojq9nYi78s0Tw=
 			</data>
 		</dict>
 		<key>Modules/sqlite3_flutter_libs.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			XE3rusoWuSrSxK1Bjq4/hfU2a6G6ZmuysCSOA8IA53o=
+			uW5lx9byJx8wvULPvuOJNKR2Jj8VMPO/dOrjamzBZmM=
 			</data>
 		</dict>
 		<key>Modules/sqlite3_flutter_libs.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
@@ -101,14 +101,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ls+wx6rNuJPS4Uw4vzhZ8YB3hGf5mYNmnOyzn78mRpw=
+			/wZnFEGpkyUXOVUyh+xzKSa2xNV0T+4zYdUvaTkjTxs=
 			</data>
 		</dict>
 		<key>Modules/sqlite3_flutter_libs.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			UJDsijdyvXz8YJl5VkYTzSYLnUtb+9a1zedZA8bkGqQ=
+			8i08Rpl0jrGD1D5OGkQ92pqG0Sphx4rse6Jmz4HfrEM=
 			</data>
 		</dict>
 		<key>Modules/sqlite3_flutter_libs.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
@@ -122,14 +122,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			21gFZeHs+jz4QH18xKATkI84LtTelsC0nmWY4k60Flw=
+			FVz7m8l/I5EX1mjoMjXQOE+MUf5dLPrtqIAH6+8NxPc=
 			</data>
 		</dict>
 		<key>Modules/sqlite3_flutter_libs.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Ta5fxGlFil21twx3XVbdLFYQFFSjrta0eX4SJ5Shhp4=
+			J1OhINb/6T0zdj7md6eovR5ALCK8F2OSVs3pB7Rux6U=
 			</data>
 		</dict>
 	</dict>

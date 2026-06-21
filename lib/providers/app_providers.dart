@@ -43,43 +43,46 @@ class RecordsNotifier extends StateNotifier<List<SmokingRecord>> {
   }
 }
 
-// Filtered records based on time range
+// ── Period helpers (shared by the home pile and the stats screen) ──
+
+/// [start, end) bounds for a time range at a given offset (0 = current).
+(DateTime, DateTime) periodBounds(TimeRange range, int offset,
+    [DateTime? nowOverride]) {
+  final now = nowOverride ?? DateTime.now();
+  switch (range) {
+    case TimeRange.day:
+      final day = now.add(Duration(days: offset));
+      final start = DateTime(day.year, day.month, day.day);
+      return (start, start.add(const Duration(days: 1)));
+    case TimeRange.week:
+      final weekStart = now.add(Duration(days: offset * 7));
+      final monday = weekStart.subtract(Duration(days: weekStart.weekday - 1));
+      final start = DateTime(monday.year, monday.month, monday.day);
+      return (start, start.add(const Duration(days: 7)));
+    case TimeRange.month:
+      final targetMonth = DateTime(now.year, now.month + offset, 1);
+      return (targetMonth, DateTime(targetMonth.year, targetMonth.month + 1, 1));
+    case TimeRange.year:
+      final targetYear = DateTime(now.year + offset, 1, 1);
+      return (targetYear, DateTime(targetYear.year + 1, 1, 1));
+  }
+}
+
+/// Records falling within the given range/offset window.
+List<SmokingRecord> recordsForPeriod(
+    List<SmokingRecord> all, TimeRange range, int offset) {
+  final (start, end) = periodBounds(range, offset);
+  return all
+      .where((r) => !r.createdAt.isBefore(start) && r.createdAt.isBefore(end))
+      .toList();
+}
+
+// Filtered records based on the selected time range + offset.
 final filteredRecordsProvider = Provider<List<SmokingRecord>>((ref) {
   final records = ref.watch(recordsProvider);
   final range = ref.watch(timeRangeProvider);
   final offset = ref.watch(dateOffsetProvider);
-  final now = DateTime.now();
-
-  late DateTime start;
-  late DateTime end;
-
-  switch (range) {
-    case TimeRange.day:
-      final day = now.add(Duration(days: offset));
-      start = DateTime(day.year, day.month, day.day);
-      end = start.add(const Duration(days: 1));
-      break;
-    case TimeRange.week:
-      final weekStart = now.add(Duration(days: offset * 7));
-      final monday = weekStart.subtract(Duration(days: weekStart.weekday - 1));
-      start = DateTime(monday.year, monday.month, monday.day);
-      end = start.add(const Duration(days: 7));
-      break;
-    case TimeRange.month:
-      final targetMonth = DateTime(now.year, now.month + offset, 1);
-      start = targetMonth;
-      end = DateTime(targetMonth.year, targetMonth.month + 1, 1);
-      break;
-    case TimeRange.year:
-      final targetYear = DateTime(now.year + offset, 1, 1);
-      start = targetYear;
-      end = DateTime(targetYear.year + 1, 1, 1);
-      break;
-  }
-
-  return records.where((r) =>
-    r.createdAt.isAfter(start) && r.createdAt.isBefore(end)
-  ).toList();
+  return recordsForPeriod(records, range, offset);
 });
 
 // Settings

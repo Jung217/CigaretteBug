@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/sensors_plus-Swift.h</key>
 		<data>
-		L9yZCMwxWOS7IHlqzOJoG+Q3Zjw=
+		Zh7nei/yf8TI9lt1LCLcbyPtUtg=
 		</data>
 		<key>Headers/sensors_plus-umbrella.h</key>
 		<data>
@@ -14,19 +14,19 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		0aJv8goMech00Tit0xMaYc+VM1A=
+		0+T8xDFu789ajDCtsayZApPzx0A=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		1NwzdPRee42znkWO/CGjSHScMHI=
+		YvLJzEsZfgPcT1uE8dV3hhn5buI=
 		</data>
 		<key>Modules/sensors_plus.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		u1mHl9sFLRVGHeAycdzM1j/RdMc=
+		W+OZzMQoURpnn5TtZtZck/25uuU=
 		</data>
 		<key>Modules/sensors_plus.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		wjjiyjO1DivZ4C4EtHcR6ptYBFc=
+		Yls4xVW8lzYeleL4zfq2MBvtuYM=
 		</data>
 		<key>Modules/sensors_plus.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -34,11 +34,11 @@
 		</data>
 		<key>Modules/sensors_plus.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		vwG76ngRmImPAOKoWBXh0E/WXrc=
+		/h3ll/h3xF92RCuLXlSd0uZDR6E=
 		</data>
 		<key>Modules/sensors_plus.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		qyigeDo6Kn57QYTXncN1jxvTwmE=
+		ujukv0ipJFx4B3Azld8lbj1EeeQ=
 		</data>
 		<key>Modules/sensors_plus.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -46,15 +46,15 @@
 		</data>
 		<key>Modules/sensors_plus.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		+o2997CGrD+RG55j65qhpizYce8=
+		Pu+TfAixAb9oecAihAMF40SAUJ8=
 		</data>
 		<key>Modules/sensors_plus.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		W9kQLZ51DjXBvVFN59VRzXiskzE=
+		kyH2uLdMoyGdxEXtLcckl5tkcko=
 		</data>
 		<key>sensors_plus_privacy.bundle/Info.plist</key>
 		<data>
-		w5AZSqpTJ894Zsf1ytFDI5wGdt0=
+		+fCaQXKpnVWwcfb4goBuu0mM2d0=
 		</data>
 		<key>sensors_plus_privacy.bundle/PrivacyInfo.xcprivacy</key>
 		<data>
@@ -67,7 +67,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7MA85r+hXZzCCPEpTQYNGAw3mvrpg108o6DVm4aBZfM=
+			VswayxLfH8ZH5DV9TD+cMpXxkqXZImpfbyPs6of3r0Y=
 			</data>
 		</dict>
 		<key>Headers/sensors_plus-umbrella.h</key>
@@ -81,21 +81,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			zjvCRnGQSC+fFR/Ps1sy45l2ld4FQ3Y3PohPWLmmjiA=
+			BBN5A84pwz+uZc97LcO4fX5HBIRHJfPbFyGL7impNVQ=
 			</data>
 		</dict>
 		<key>Modules/sensors_plus.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			EaibuwsJCyqny8J4w0iHIXTyiVuAnGD2VXBlm77a/O4=
+			ijW9GWgxyxrSl+XWtlgfF9iH9laZw486ZhsSi1DIr5Y=
 			</data>
 		</dict>
 		<key>Modules/sensors_plus.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			rluqPCo5zRTLC+/LdTgf2EeTRIhab/7DhBEAfasYPSU=
+			SBmj1r3rZ32I34ZCvu8OGSIjzYjLOYbySwDej5HMCVU=
 			</data>
 		</dict>
 		<key>Modules/sensors_plus.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
@@ -109,14 +109,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			KRh/5eJHpT2xDnaBQFfgAh0Z8/qHEv/ijDqbpqZxzMg=
+			ephbje0l0PfNrgPp4UdoqHSMXt1vl/xAvZT0sSltkL4=
 			</data>
 		</dict>
 		<key>Modules/sensors_plus.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			S7T3SwWq9z7SCngb4CLO2FpYgpMPuwEU2O9Py2S+k7E=
+			5n4vULYPUf5XCGoffYWDck7muvUgTib0PvFHzHVl9B4=
 			</data>
 		</dict>
 		<key>Modules/sensors_plus.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
@@ -130,21 +130,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			x/ivr+05Q0j3C4M+iSEg41tOODhdrnLrXesPRQEwhtg=
+			VCttTu5PYESdZIIl07ufa77Dcy5VJUl5r4dvdtpdfQk=
 			</data>
 		</dict>
 		<key>Modules/sensors_plus.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			KSE2MCrsKQaV9C6/YaJ/XBIVzvoBvajym+x7h2pf5Qg=
+			Gtr7cFRoVk7KaOqj5RMfudoV00yvYbXDvpag4B//Nrg=
 			</data>
 		</dict>
 		<key>sensors_plus_privacy.bundle/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			J/8gbe8Lo7UktV0EcGpIN/XvxErNSJDh2zH4hjw2kT0=
+			6wmLdXh5G70HAfbL0Do3pmnwF6iH/8iLbphp6H3qjqI=
 			</data>
 		</dict>
 		<key>sensors_plus_privacy.bundle/PrivacyInfo.xcprivacy</key>
