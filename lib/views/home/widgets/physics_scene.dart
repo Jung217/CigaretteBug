@@ -123,8 +123,8 @@ class _PhysicsSceneState extends ConsumerState<PhysicsScene>
     // 4 walls
     void wall(double x, double z, double sx, double sz) {
       w.add(oimo.ObjectConfigure(
-        shapes: [oimo.Box(cfg, sx, 6.0, sz)],
-        position: vm.Vector3(x, 2.0, z),
+        shapes: [oimo.Box(cfg, sx, 14.0, sz)],
+        position: vm.Vector3(x, 6.0, z),
       ));
     }
 
@@ -221,7 +221,7 @@ class _PhysicsSceneState extends ConsumerState<PhysicsScene>
   }
 
   void _spawnCig(SmokingRecord r) {
-    const radius = 0.17, length = 1.7; // thicker → above oimo's 0.1 stable min
+    const radius = 0.17, length = 1.0;
     final body = _world!.add(oimo.ObjectConfigure(
       shapes: [
         oimo.Cylinder(oimo.ShapeConfig(geometry: oimo.Shapes.cylinder,
@@ -351,6 +351,17 @@ class _PhysicsSceneState extends ConsumerState<PhysicsScene>
     final dx = x, dy = y - _camH, dz = z - _camZ;
     final cz = dx * _camFwd[0] + dy * _camFwd[1] + dz * _camFwd[2];
     if (cz <= 0.1) return null;
+    final cx = dx * _camRight[0] + dy * _camRight[1] + dz * _camRight[2];
+    final cy = dx * _camUp[0] + dy * _camUp[1] + dz * _camUp[2];
+    return _P2(_sz.width / 2 + _focal * cx / cz, _sz.height / 2 - _focal * cy / cz,
+        cz);
+  }
+
+  // Near-plane clamped projection (never null) — for cylinder rendering
+  _P2 _projectSafe(double x, double y, double z) {
+    final dx = x, dy = y - _camH, dz = z - _camZ;
+    var cz = dx * _camFwd[0] + dy * _camFwd[1] + dz * _camFwd[2];
+    if (cz < 0.2) cz = 0.2;
     final cx = dx * _camRight[0] + dy * _camRight[1] + dz * _camRight[2];
     final cy = dx * _camUp[0] + dy * _camUp[1] + dz * _camUp[2];
     return _P2(_sz.width / 2 + _focal * cx / cz, _sz.height / 2 - _focal * cy / cz,
@@ -822,6 +833,12 @@ class _Scene3D extends CustomPainter {
         s.body.position.x + r[0], s.body.position.y + r[1], s.body.position.z + r[2]);
   }
 
+  _P2 _vertSafe(_Solid s, double lx, double ly, double lz, double sc) {
+    final r = _qrot(s, lx * sc, ly * sc, lz * sc);
+    return st._projectSafe(
+        s.body.position.x + r[0], s.body.position.y + r[1], s.body.position.z + r[2]);
+  }
+
   void _paintPack(Canvas canvas, _Solid s) {
     final sc = s.pop >= 1 ? 1.0 : _easeOutBack(s.pop);
     final hw = s.dimX / 2, hh = s.dimY / 2, hd = s.dimZ / 2;
@@ -867,6 +884,13 @@ class _Scene3D extends CustomPainter {
       [0, 3, 7, 4, -1, 0, 0], // left
     ];
     final seed = s.rec.id.hashCode;
+    // Side faces (nx=±1) use the dominant color from the front design
+    final Color sideCol = switch (s.brand) {
+      _Brand.mevius => light,
+      _Brand.marlboro => light,
+      _Brand.longlife => s.brandColor,
+      _Brand.generic => body,
+    };
     final faces = <(List<_P2>, double, bool, double, int)>[];
     var fi = 0;
     for (final f in defs) {
@@ -875,7 +899,8 @@ class _Scene3D extends CustomPainter {
       final dot = wn[0] * _lx + wn[1] * _ly + wn[2] * _lz;
       final b = (0.45 + 0.75 * dot.clamp(0.0, 1.0)).clamp(0.2, 1.2);
       final depth = (p[0].depth + p[1].depth + p[2].depth + p[3].depth) / 4;
-      faces.add((p, b.toDouble(), f[5].abs() == 1, depth, fi++));
+      final isTopBottom = f[5].abs() == 1; // ny=±1 → top/bottom get brand design
+      faces.add((p, b.toDouble(), isTopBottom, depth, fi++));
     }
     faces.sort((a, b) => b.$4.compareTo(a.$4)); // far first
 
@@ -887,7 +912,6 @@ class _Scene3D extends CustomPainter {
       final o2 = Offset(p[2].x, p[2].y), o3 = Offset(p[3].x, p[3].y);
 
       if (f.$3) {
-        // brand color-block design mapped over the face (u across, t along)
         Offset uv(double u, double t) {
           final top = Offset.lerp(o0, o1, u)!;
           final bot = Offset.lerp(o3, o2, u)!;
@@ -897,7 +921,7 @@ class _Scene3D extends CustomPainter {
         _design(canvas, s.brand, s.brandColor, uv, b, body, accent, light, logo,
             fseed);
       } else {
-        _handFill(canvas, [o0, o1, o2, o3], _mul(body, b), fseed);
+        _handFill(canvas, [o0, o1, o2, o3], _mul(sideCol, b), fseed);
       }
     }
   }
@@ -999,7 +1023,7 @@ class _Scene3D extends CustomPainter {
 
   void _paintCig(Canvas canvas, _Solid s) {
     final sc = s.pop >= 1 ? 1.0 : _easeOutBack(s.pop);
-    const n = 14;
+    const n = 24;
     final r = s.dimX / 2, hl = s.dimY / 2;
 
     // floor shadow
@@ -1013,30 +1037,41 @@ class _Scene3D extends CustomPainter {
       );
     }
 
-    final ring0 = <_P2?>[], ring1 = <_P2?>[];
-    final bright = <double>[];
-    for (int i = 0; i <= n; i++) {
-      final ang = 2 * pi * i / n;
-      final cx = r * cos(ang), cz = r * sin(ang);
-      ring0.add(_vert(s, cx, -hl, cz, sc));
-      ring1.add(_vert(s, cx, hl, cz, sc));
-      final wn = _qrot(s, cos(ang), 0, sin(ang));
-      final dot = wn[0] * _lx + wn[1] * _ly + wn[2] * _lz;
-      bright.add((0.4 + 0.72 * dot.clamp(0.0, 1.0)).clamp(0.2, 1.2));
+    // Sections: t 0 = filter end (-hl), t 1 = burnt end (+hl)
+    // filter 63%, ring 2%, body 27%, burnt 8%  ≈  70:30 filter:body
+    const ts = [0.0, 0.63, 0.65, 0.92, 1.0];
+    const cols = [_cigFilter, Color(0xFF1A1412), _cigBody, Color(0xFF3E3832)];
+
+    final rings = <List<_P2>>[];
+    final brights = <List<double>>[];
+    for (final t in ts) {
+      final y = -hl + t * hl * 2;
+      final ring = <_P2>[];
+      final br = <double>[];
+      for (int i = 0; i <= n; i++) {
+        final ang = 2 * pi * i / n;
+        final cx = r * cos(ang), cz = r * sin(ang);
+        ring.add(_vertSafe(s, cx, y, cz, sc));
+        final wn = _qrot(s, cos(ang), 0, sin(ang));
+        final dot = wn[0] * _lx + wn[1] * _ly + wn[2] * _lz;
+        br.add((0.4 + 0.72 * dot.clamp(0.0, 1.0)).clamp(0.2, 1.2));
+      }
+      rings.add(ring);
+      brights.add(br);
     }
-    if (ring0.any((e) => e == null) || ring1.any((e) => e == null)) return;
 
     final quads = <_Face>[];
-    for (int i = 0; i < n; i++) {
-      final depth = (ring0[i]!.depth +
-              ring0[i + 1]!.depth +
-              ring1[i]!.depth +
-              ring1[i + 1]!.depth) /
-          4;
-      final b = (bright[i] + bright[i + 1]) / 2;
-      quads.add(_Face(
-          [ring0[i]!, ring0[i + 1]!, ring1[i + 1]!, ring1[i]!], _mul(_cigBody, b),
-          depth));
+    for (int sec = 0; sec < cols.length; sec++) {
+      final r0 = rings[sec], r1 = rings[sec + 1];
+      final b0 = brights[sec], b1 = brights[sec + 1];
+      final col = cols[sec];
+      for (int i = 0; i < n; i++) {
+        final depth = (r0[i].depth + r0[i + 1].depth +
+                r1[i].depth + r1[i + 1].depth) / 4;
+        final b = (b0[i] + b0[i + 1] + b1[i] + b1[i + 1]) / 4;
+        quads.add(_Face(
+            [r0[i], r0[i + 1], r1[i + 1], r1[i]], _mul(col, b), depth));
+      }
     }
     quads.sort((a, b) => b.depth.compareTo(a.depth));
     for (final q in quads) {
@@ -1048,17 +1083,39 @@ class _Scene3D extends CustomPainter {
       canvas.drawPath(path, Paint()..color = q.color);
     }
 
-    // near end cap = filter
-    final c0 = _vert(s, 0, -hl, 0, sc), c1 = _vert(s, 0, hl, 0, sc);
-    if (c0 == null || c1 == null) return;
-    final near = c0.depth >= c1.depth ? ring0 : ring1;
-    final capColor = c0.depth >= c1.depth ? _cigFilter : _cigBody;
-    final cap = Path()..moveTo(near[0]!.x, near[0]!.y);
+    // Nearer end cap
+    final c0 = _vertSafe(s, 0, -hl, 0, sc);
+    final c1 = _vertSafe(s, 0, hl, 0, sc);
+    final filterNear = c0.depth >= c1.depth;
+    final capRing = filterNear ? rings.first : rings.last;
+    final cap = Path()..moveTo(capRing[0].x, capRing[0].y);
     for (int i = 1; i <= n; i++) {
-      cap.lineTo(near[i]!.x, near[i]!.y);
+      cap.lineTo(capRing[i].x, capRing[i].y);
     }
     cap.close();
-    canvas.drawPath(cap, Paint()..color = capColor);
+    canvas.drawPath(
+        cap, Paint()..color = filterNear ? _cigFilter : const Color(0xFF4A4540));
+
+    // Burnt end near: ember ring + dark center
+    if (!filterNear) {
+      for (final frac in [0.7, 0.35]) {
+        final rr = r * frac;
+        final inner = <_P2>[];
+        for (int i = 0; i <= n; i++) {
+          final ang = 2 * pi * i / n;
+          inner.add(_vertSafe(s, rr * cos(ang), hl, rr * sin(ang), sc));
+        }
+        final ip = Path()..moveTo(inner[0].x, inner[0].y);
+        for (int i = 1; i < inner.length; i++) {
+          ip.lineTo(inner[i].x, inner[i].y);
+        }
+        ip.close();
+        canvas.drawPath(ip, Paint()
+          ..color = frac > 0.5
+              ? const Color(0xFFB85A1F)
+              : const Color(0xFF2A2520));
+      }
+    }
   }
 
   static Color _mul(Color c, double f) => Color.from(
